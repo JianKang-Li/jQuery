@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>删除元素及遍历元素</title>
+        <script src="js/jquery-3.6.0.js" type="text/javascript"></script>
+        <style type="text/css">
+        span{
+        color : white;
+        padding :8px;
+        margin:5px;
+        float: left;
+        }
+        .green2{
+        background-color: green;
+        }
+        .blue2{
+        background-color :blue;
+        }
+        </style>
+    </head>
+
+    <body>
+        <h3>删除元素及遍历元素</h3>
+        <span class="green2">jquery<a>删除</a></span>
+        <span class="blue2">javase</span>
+        <span class="green2">http协议</span>
+        <span class="blue2">servlet</span>
+        
+        <script type="text/javascript">
+        /* 方法                                  说明
+        
+        remove()                              删除所选元素或指定的子元素，包括整个标签和内容一起删。
+        指定元素.remove();
+        empty()                               清空所选元素的内容,保留标签
+        指定元素.empty();
+        
+        //遍历元素
+        each()
+        
+        $(selector).each(function(index,element)):遍历元素
+        参数function为遍历时的回调函数,
+        index为遍历元素的序列号，从0开始。
+        element是当前的元素，此时是dom元素。
+
+        */
+       
+       
+       //删除元素
+        /* $(".green2").remove();
+        $(".blue2").empty(); */
+        
+        
+       //遍历元素
+       $(".green2").each(function(index,element){
+           console.log(index);
+           console.log(element);
+           console.log(this);
+           console.log($(this));
+       });
+       
+       
+        </script>
+    </body>
+
+</html>

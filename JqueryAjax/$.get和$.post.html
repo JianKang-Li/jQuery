@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>其他ajax请求</title>
+        <script src="js/jquery-3.6.0.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<!-- $.get
+		这是一个简单的GET请求功能以取代复杂$.ajax 。
+		请求成功时可调用回调函数。如果需要在出错时执行函数，请使用$.ajax。
+        1.请求json文件，忽略返回值
+		$.get('js/cuisine_area.json');
+		2.请求json文件，传递参数，忽略返回值
+		$.get('js/cuisine_area.json' ,{name : "tom" , age : 100});
+		3.请求json文件,拿到返回值,请求成功后可拿到返回值
+		$.get('js/cuisine_area.json',function(data){
+		console.log(data) ;
+		]);
+		4.请求json文件,传递参数,拿到返回值
+		$.get('js/cuisine_area.json', {name : "tom" , age :100}, function(data){
+		console.log(data);
+		}); -->
+
+        
+        <!-- 
+            $.get():
+            语法：
+            $.get("请求地址","请求参数",fuction(形参){
+                
+            });
+            
+            
+            $.post():
+            语法：
+            $.post("请求地址","请求参数",fuction(形参){
+                
+            });
+            
+        -->
+        
+        <script type="text/javascript">
+        $.get("js/data.json",{},function(data){
+            console.log(data);
+        });
+        
+        </script>
+	</body>
+</html>

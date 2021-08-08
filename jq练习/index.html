@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+        <script src="js/jquery-3.6.0.js" type="text/javascript">
+        </script>
+        
+        
+        <style type="text/css">
+        div{
+            padding: 8px;
+            width: 100%;
+        }
+        .blue{
+            background: blue;
+        }
+        .larger{
+            font-size: 30px;
+        }
+        .green {
+            background : green;
+        }
+        .pink{
+            background: pink;
+        }
+        
+        </style>
+
+	</head>
+	<body>
+        
+        <h2>基础选择器</h2>
+		<div id="mydiv">文本</div>
+        <div class="blue">你好</div>
+        <p>人间失格</p>
+        <script type="text/javascript">
+        var divDom=document.getElementById('mydiv')
+         console.log(divDom);
+             
+         var divjq=$('#mydiv')//id选择器 
+         console.log(divjq);
+         
+         var divs=$(divDom)//Dom对象转为jquer对象
+         console.log(divs);
+         
+         var divjqtodom=divs[0];//jquery对象转Dom对象
+         console.log(divjqtodom);
+         
+         var jqclass=$('.blue')//类选择器
+         console.log(jqclass);
+         
+         var jqtag=$('p')//标签选择器
+         console.log(jqtag);
+         
+         var all=$('*')//通用选择器
+         console.log(all);
+         
+         var along=$('.blue,p,#mydiv')//组合选择器
+         console.log(along);
+        </script>
+        
+        
+        
+        <h2>层次选择器</h2>
+        <div id="parent">层次择器
+            <div id="child" class="testcolor">父选择器
+                  <div class="gray">子选择器</div>
+                  <img src="http://wwww.baidu.com/img/bd_logo1.png" width="278" reight="129">
+                  <img src="http://www.baidu.com/img/bd_logo1.png" width="278" height="129">
+            </div>
+            <!--<p>p元素</p>-->
+            <div>
+              选择器2<div>选择器2中的div</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        //层次选择器    后代选择器$("#parent div")选择id为parent的元素的所有div 包含所有代
+        /*子代选择器    $("parent>div")选择id为parent的直接div子元素 只找第一代
+        相邻选择器      $(".blue+img")选择css类为blue的下一个img元素 只找一个同级元素且为直接挨着的 不存在则获取不到
+        同辈选择器      $(".blue~img")选择css类为blue的之后的img元素 包含所有
+        */
+        var hd=$("#parent div");
+        console.log(hd);
+        
+        
+        var zd=$("#parent>div");
+        console.log(zd);
+        
+        
+        var xl=$("#child+div");
+        console.log(xl);
+        
+        
+        var imgs=$(".gray~img");
+        console.log(imgs);
+        </script>
+        
+        <h2>表单选择器</h2>
+        <!--表单选择-->
+            <form id="myform1" name="myform" method="post">
+                <input type="hidden" name="uno" value="9999" disabled="disabled" />
+                姓名:<input type="text" id="uname" name="uname" /><br />
+                密码:<input type="password" id="upwd"name="upwd" value="123456" /><br/>
+                年龄:<input type="radio" name="uage" value="0" checked="checked"/>小屁孩
+                     <input type="radio" name="uage" value="1"/>你懂得<br />
+                爱好:<input type="checkbox" name="ufav" value="篮球"/>篮球
+                    <input type="checkbox" name="ufav" value="爬床"/>爬床
+                    <input type="checkbox" name="ufav" value="代码"/>代码<br />
+                来自:<select id="ufrom" name="ufrom">
+                        <option value="-1" selected="selected">请选择</option> 
+                        <option value="0">北京</option>
+                        <option value="1">上海</option>
+                    </select><br />
+            简介:<textarea rows="10" co1s="30" name="uintro"></textarea><br />
+            头像:<input type="file"/><br />
+            <input type="image" src="http://www.baidu.com/img/bd_logo1.png"
+                    width="20" height="20" />
+            <button type="submit" >提交</button> 
+            <button type="reset" >重置</button>
+            </form>
+            <script type="text/javascript">
+            /*表单选择器
+            Forms           名称                举例
+            表单选择器       :input              查找所有的input元素:$(":input""; <br />
+                                                注意:会匹配所有的input、 textarea、 select和button元素。
+            文本框选择器     :text               找所有文本框: $(":text"")               
+            
+            密码框选择器     :password           查找所有密码框:$(":password"")
+            
+            单选按钮选择器   :radio              查找所有单选按钮:$(":radio"")
+            
+            复选框选择器     :checkbox           查找所有复选框:$(":checkbox")
+            
+            提交按钮选择器   :submit             查找所有提交按钮:$(":submit")
+            
+            图像域选择器     :image              查找所有图像域:$(":image")
+            
+            重置按钮选择器   :reset              查找所有重置按钮:$(":reset")
+            
+            按钮选择器       :button             查找所有按钮: $(":button")
+            
+            文件域选择器     :file              查找所有文件域: $(":file"")
+            */
+                       var input=$(":input");
+                       console.log(input);
+                       
+                       var input2=$("input");
+                       console.log(input2);
+            </script>
+            
+            <h2>操作元素的属性</h2>
+            <input type="checkbox" name="ch" checked="checked" id="aa" abc="aabbcc"/>aa
+            <input type="checkbox" name="ch" id="bb"/>bb
+            <script type="text/javascript">
+            /*jq对Dom操作
+            1、操作元素的属性（jq对象）
+                      属性的分类：
+                      固有属性：元素本身就有的属性
+                      返回值：boolean的属性：checked，selected，disabled
+                      自定义属性：用户自定义的属性
+                1.1获取属性
+                  attr(属性名称) 获取指定的属性值，操作checkbox时，选中返回checked，没有选中返回undefined。
+                  attr(checked')   attr('name')
+                
+                  prop(属性名称) 获取具有true和false两个属性的属性值
+                  prop('checked')*/
+                      
+                        var name=$("#aa").attr("name");
+                         console.log(name);
+                        
+                        
+                        var name1=$("#aa").prop("abc");//prop不能获取自定义属性
+                         console.log(name1);
+                        
+                        var name2=$("#aa").attr("abc");
+                         console.log(name2);
+                         
+                        var bo=$("#aa").attr("checked");//已设置属性，返回值
+                        console.log(bo);
+                        
+                        var bo1=$("#aa").prop("checked");//返回true
+                        console.log(bo1);
+                        
+                        var bo3=$("#bb").attr("checked");//未设置属性，返回undefined
+                        console.log(bo3);
+                        
+                        var bo4=$("#bb").prop("checked");//返回false
+                        console.log(bo4);
+                        
+                        /* 设置属性
+                        attr("属性名","属性值"); 
+                        prop("属性名","属性值");
+                        */
+                       $("#aa").attr("value","1");//固有属性
+                       $("#bb").prop("value","2");
+                       
+                       $("#bb").attr("checked","checked");//返回型是boolean型
+                       $("#bb").prop("checked",false);
+                        
+                       $("#aa").attr("uname","admin");
+                       $("#bb").prop("uage","18");//prop无法操作自定义属性
+                       
+                       
+                       /* 移除属性：
+                       removeAttr("属性名"); 
+                       */
+                       $("#aa").removeAttr("checked");
+            </script>
+            
+            <h2>操作元素样式</h2>
+            <h3>css()方法设置元素样式</h3>
+            <div id="conBlue" class="blue larger">天蓝色</div>
+            <div id="conRed">大红色</div>
+            <div id="remove" class="blue larger">天蓝色</div>
+            <script type="text/javascript">
+            /* 2、操作元素的样式
+            方法                            说明
+            attr("class")                   获取class样式名称
+            
+            attr("class","属性值")          修改class修改样式
+            
+            addClass("样式名")              添加样式名称
+            
+            css()                          添加具体的样式
+                                            css("具体样式名","样式值");(设置单个样式)；css({"":"","":""});(设置多个样式)
+            removeClass(class)             移除样式          
+            */
+                           var cla=$("#conBlue").attr("class");
+                           console.log(cla);
+                           
+                           
+                           $("#conBlue").attr("class","green");//会覆盖原本的样式
+                           
+                           
+                           $("#conBlue").addClass("larger");
+                           // $("#conBlue").addClass("pink");//以定义顺序后为主
+                           
+                           $("#conRed").css("font-size","40px");
+                           $("#conRed").css({"font-family":"楷体","color":"rgb(0,250,250)"});
+                           
+                           $("#remove").removeClass("larger blue");//移除样式
+            </script>
+            
+            
+            <h2>操作元素内容</h2>
+            <h3><span>html()和text()方法设置元素内容</span></h3>
+            <div id="html"></div>
+            <div id="html2"></div>
+            <div id="text"></div>
+            <div id="text2"></div>
+            <input type="text" name="uname" id="op" value="oop"/>
+            <script type="text/javascript">
+            /* 操作元素的内容
+             方法                             说明
+             
+             html()                           获取元素的html内容,包含html标签//非表单元素
+             
+             html("html内容")                设定元素的html内容
+             
+             text()                           获取元素的文本内容，不包含html//非表单元素
+             
+             text("text内容")                 设置元素的文本内容，不包含html
+             
+             val()                            获取元素value值//表单元素
+             
+             val("值")                        设定元素的value值
+             
+             表单元素：
+                文本域text，密码框password，单选框radio，复选框checkbox，隐藏域hidden，文本域textarea，下拉框select
+             非表单元素：
+                div,span,h1-h6,table,tr,td,li,p等
+             */
+            $("#html").html("<h2>上海</h2");//可识别标签
+            $("#html2").html("上海");
+                   
+            var html=$("#html").html();
+            console.log(html);
+            var html1=$("#html2").html();
+            console.log(html1);
+            
+            
+            $("#text").text("北京");//不能识别html标签，为纯文本
+            $("#text2").text("<h2>北京<h2>");
+            
+            
+            var text=$("#text").text();//取值也是纯文本，不会显示原来的html标签
+            console.log(text);
+            var text1=$("#text2").text();
+            console.log(text1);
+            
+            
+            value=$("#op").val("nice");
+            var value=$("#op").val();
+            console.log(value);
+            </script>
+            
+          
+
+            <h2>添加元素</h2>
+            <h3>prepend()方法前追加内容</h3>
+            <h3>prependTo()方法前追加内容</h3>
+            <h3>append()方法后追加内容</h3>
+            <h3>appendTo()方法后追加内容</h3>
+            
+            <span class="red1">男神</span>
+            <span class="blue1">偶像</span>
+            <div class="green1">
+               <span>小鲜肉</span>
+            </div>
+            <style type="text/css">
+            div{
+            margin: 10px 0px;
+            }
+            span{
+            color: white;
+            padding: 8px;
+            }
+            .red1{
+            background-color: red ;
+            }
+            .blue1{
+            background-color: blue;
+            }
+            .green1{
+            background-color: green;
+            }
+            .pink1{
+                background-color: pink;
+            }
+            .gray{
+                background-color: gray;
+            }
+            </style>
+            
+            <script type="text/javascript">
+            /*
+            创建元素
+            在jQuery中创建元素很简单，直接使用核心函数即可
+            $("元素内容");
+            
+            添加元素
+            方法                                          说明
+            前追加子元素
+            指定元素.prepend(content)                     在被选元素内部的开头插入元素或内容，被追加的content参数，可以是
+            在指定元素内部最前部追加                       字符、HTML元素标记或jquery对象。
+            
+            $(content).prependTo(selector)                把content元素或内容加入selector元素开头
+            后追加子元素
+            append(content)                               在被选元素内部的结尾插入元素或内容，被追加的content参数，可以是
+                                                          字符、HTML元素标记。
+            
+            $(content).appendTo(selector)                 把content元素或内容插入selector元素内，默认是在尾部
+            
+            追加同级元素
+            前追加
+            before()                                      在元素前插入指定的元素或内容:$(selector).before(content)
+            后追加
+            after()                                       在元素后插入指定的元素或内容:$(selector).after(content)
+            
+            
+            注：在添加元素时，如果元素本身不存在（新建的元素），此时会将元素追加到指定位置
+                  如果元素本身存在（已有）相当于剪切
+             */
+            
+            //创建元素
+            var p="<p>这是一个标签</p>";
+            console.log(p);
+            console.log($(p));
+            
+            //添加元素
+            var span="<span>小奶狗</span>";
+            //得到元素
+            $(".green1").prepend(span);
+            var span2="<span>小狼狗</span>";
+            $(span2).prependTo(".green1");
+            
+            var span3="<span>小狼狗1</span>";
+            var span4="<span>小狼狗2</span>";
+            
+            $(".green1").append(span3);
+            $(span4).appendTo(".green1");
+            
+            //将已存在内容追加到指定元素中
+            $(".green1").append($(".red1"));
+            
+            //同级追加
+            var sp1="<span class='pink1'>女神</span>";//注意用单引号区分
+            var sp2="<span class='gray'>歌手</span>";
+            
+            $(".blue1").before(sp1);
+            $(".blue1").after(sp2);
+            
+            </script>
+         
+                
+            
+                                     
+	</body>
+</html>
